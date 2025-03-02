@@ -1,3 +1,4 @@
-FROM ubuntu:20.04
-RUN echo "Hello world!"
-CMD ["echo", "Placeholder command"]
+FROM pbuterba/docker-lab:latest
+RUN echo "Building Docker lab container!"
+WORKDIR /home/data
+CMD ["python3", "scripts.py"]
