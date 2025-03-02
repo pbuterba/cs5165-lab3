@@ -3,12 +3,12 @@
 @brief      Script to perform the basic tasks of Project 3 - Docker
 
 @date       2/28/2025
-@updated    2/28/2025
+@updated    3/2/2025
 
 @author     Preston Buterbaugh
 """
 # Imports
-import subprocess
+import socket
 import sys
 from typing import List, Dict, Tuple, Union
 
@@ -45,8 +45,6 @@ def main() -> int:
                 if_word_frequencies, if_word_count, top_if_words = count_word(word, if_word_frequencies, if_word_count, top_if_words)
                 total_word_count = total_word_count + 1
 
-    print('FILE SWITCH')
-
     # Count always words
     for line in always_file:
         words = line.split(' ')
@@ -72,7 +70,8 @@ def main() -> int:
     always_file.close()
 
     # Get IP address
-    ip_address = subprocess.check_output(['ip', 'addr', 'show'])
+    hostname = socket.gethostname()
+    ip_address = socket.gethostbyname(hostname)
 
     # Write output
     out_file = open('/home/data/output/result.txt', 'w')
